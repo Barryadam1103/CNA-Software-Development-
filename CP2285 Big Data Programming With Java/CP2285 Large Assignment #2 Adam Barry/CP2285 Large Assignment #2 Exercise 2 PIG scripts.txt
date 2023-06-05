@@ -1,0 +1,29 @@
+Exercise #2 Question 1
+
+stocks = LOAD 'NYSE_daily' AS (exchange:chararray, symbol:chararray, date:chararray, open:float, high:float, low:float, close:float, volume:int, apc:float);
+nov_27 = FILTER stocks BY date == '2009-11-27';
+filter_data = FILTER stocks by open != 0.00;
+for_stock = FOREACH nov_27 GENERATE symbol, date, volume;
+sorted_data = ORDER for_stock BY volume DESC;
+top_stock = LIMIT sorted_data 1;
+DUMP top_stock;
+
+
+Exercise #2 Question 2
+stocks = LOAD 'NYSE_daily' AS (exchange:chararray, symbol:chararray, date:chararray, open:float, high:float, low:float, close:float, volume:int, apc:float);
+dec_8 = FILTER stocks BY date == '2009-12-08' AND open != 0.00;
+stock_earnings = FOREACH dec_8 GENERATE symbol, apc - open as (earnings:double);
+highest_earning = ORDER stock_earnings BY earnings DESC;
+top_stock = LIMIT highest_earning 1;
+DUMP top_stock;
+
+
+
+
+Exercise #2 Question 3
+stocks = LOAD 'NYSE_daily' AS (exchange:chararray, symbol:chararray, date:chararray, open:float, high:float, low:float, close:float, volume:int, apc:float);
+dec_8 = FILTER stocks BY date == '2009-12-08' AND open != 0.00;
+sorted = FOREACH dec_8 GENERATE ((apc - open) * 10000) AS (profit:double);
+top_stock = LIMIT sorted 1;
+DUMP top_stock;
+

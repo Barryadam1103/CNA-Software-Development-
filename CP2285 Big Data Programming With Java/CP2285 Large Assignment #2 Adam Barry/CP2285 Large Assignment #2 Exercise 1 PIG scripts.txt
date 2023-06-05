@@ -1,0 +1,37 @@
+Exercise #1 Questions 1
+
+temp = LOAD 'weather.csv' USING PigStorage(',');
+tempf = FILTER temp BY $8 != -9999;
+tempg = GROUP temp_f ALL;
+tempavg = FOREACH tempg GENERATE AVG(tempf.$8);
+DUMP tempavg;
+
+
+Exercise #1 Questions 2
+temp = LOAD 'weather.csv' USING PigStorage(',');
+tempf = FILTER temp BY $8 != -9999;
+temps_months = GROUP tempf BY SUBSTRING($1, 4, 6);
+avg_temps = FOREACH temps_months GENERATE group, AVG(tempf.$8);
+DUMP avg_temps;
+
+
+
+Exercise #1 Questions 3
+temp = LOAD 'weather.csv' USING PigStorage(',');
+temp_filtered = FILTER temp BY $5 != -9999 AND $5 > 20;
+temp_group = GROUP temp_filtered ALL;
+temp_count = FOREACH temp_group GENERATE COUNT(temp_filtered.$5);
+DUMP temp_count;
+
+
+
+
+
+Exercise #1 Questions 4
+temp = LOAD 'weather.csv' USING PigStorage(',');
+temp_filtered = FILTER temp BY $6 != -9999 AND $6 < -20;
+temp_group = GROUP temp_filtered ALL;
+temp_count = FOREACH temp_group GENERATE COUNT(temp_filtered.$6);
+DUMP temp_count;
+
+

@@ -1,0 +1,27 @@
+5a) SELECT SUM(trip_distance)
+    from stg_ny_yellow_taxi12;
+
+
+5b) SELECT AVG(tip_amount)
+    from stg_ny_yellow_taxi12;
+
+
+5c) SELECT MAX(fare_amount)
+    from stg_ny_yellow_taxi12;
+
+
+5d) SELECT COUNT(tpep_pickup_datetime) AS PICK_UP_COUNT 
+    FROM stg_ny_yellow_taxi12
+    WHERE DAY(tpep_pickup_datetime) = 1 AND HOUR(tpep_pickup_datetime) BETWEEN 21 AND 22        AND MONTH(tpep_pickup_datetime) = 1; 
+    
+
+
+
+
+ 
+    
+
+
+
+
+
